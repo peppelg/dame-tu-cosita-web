@@ -8,7 +8,17 @@ const cosite = [
 
 const cositaClose = async function(e = {preventDefault: function(){}}) {
     e.preventDefault();
-    console.log(await new Audio("../../audio/dametucosita.mp3").play());
+    new Audio("../../audio/cosita.mp3").play();
+    var cositaAudio = new Audio("../../audio/dametucosita.mp3");
+    if (typeof cositaAudio.loop == 'boolean') {
+        cositaAudio.loop = true;
+    } else {
+        cositaAudio.addEventListener('ended', function() {
+            this.currentTime = 0;
+            this.play();
+        }, false);
+    }
+    cositaAudio.play();
     var cosita = new $Window({title: "Dame tu cosita"});
     cosita.$content.append($("<img>").prop("src", cosite[Math.floor(Math.random() * cosite.length)]));
     cosita.on("close", cositaClose);

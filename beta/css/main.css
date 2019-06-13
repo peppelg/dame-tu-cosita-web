@@ -3,3 +3,9 @@ html,body {
     width: 100vw;
     height: 100vh;
 }
+noscript {
+    font-size: 200%;
+}
+img {
+    display: block;
+}

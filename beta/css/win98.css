@@ -75,7 +75,6 @@ button.selected {
 	border-left: 1px solid #dfdfdf;
 	border-right: 1px solid #000;
 	border-bottom: 1px solid #000;
-	padding: 2px;
 }
 .window:after {
 	content: '';

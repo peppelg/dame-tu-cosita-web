@@ -5,7 +5,7 @@ const cosite = [
     "../img/d.jpg",
     "../img/e.jpg",
 ];
-new Audio("../../dametucosita.mp3").play();
+new Audio("../../audio/dametucosita.mp3").play();
 const cositaClose = function(e = {preventDefault: function(){}}) {
     e.preventDefault();
     var cosita = new $Window({title: "Dame tu cosita"});

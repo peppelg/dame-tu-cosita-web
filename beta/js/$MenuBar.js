@@ -178,7 +178,7 @@ function $MenuBar(menus){
 		var $menu_button = $("<div>").addClass("menu-button").appendTo($menu_container);
 		var $menu_popup = $MenuPopup(menu_items).appendTo($menu_container);
 		
-		var menu_id = menus_key.replac"<&", ">".replace(/ /g, "-").toLowerCase();
+		var menu_id = menus_key.replace("<&", ">").replace(/ /g, "-").toLowerCase();
 		$menu_button.addClass("" + menu_id + "-menu-button");
 		if(menu_id == "extras"){
 			// TODO: refactor shared key string, move to function

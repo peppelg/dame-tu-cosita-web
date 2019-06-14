@@ -147,7 +147,7 @@ function $Window(options){
 		drag_offset_y = e.clientY - $w[0].getBoundingClientRect().top;
 		$G.on("pointermove", drag);
 	});
-	$G.on("pointerup", function(e){
+	$G.on("pointerup", function(){
 		$G.off("pointermove", drag);
 	});
 	$w.$titlebar.on("dblclick", function(e){

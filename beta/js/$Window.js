@@ -21,8 +21,6 @@ function $Window(options){
 		$w.addClass("component-window");
 	}
 	
-	$w.attr("touch-action", "none");
-	
 	$w.$x.on("click", function(){
 		$w.close();
 	});
@@ -130,25 +128,36 @@ function $Window(options){
 	
 	var drag_offset_x, drag_offset_y;
 	var drag = function(e){
+		var i = e;
+		var y = i.clientY;
+		var x = i.clientX;
+		if(typeof e.touches !== "undefined") {
+			i = e.touches[0];
+			y = i.clientY - 50;
+			x = i.clientX - 15;
+		}
 		$w.css({
-			left: e.clientX - drag_offset_x,
-			top: e.clientY - drag_offset_y,
+			left: x - drag_offset_x,
+			top: y - drag_offset_y,
 		});
 	};
-	$w.$titlebar.attr("touch-action", "none");
 	$w.$titlebar.on("mousedown selectstart", function(e){
 		e.preventDefault();
 	});
-	$w.$titlebar.on("pointerdown", function(e){
+	$w.$titlebar.on("mousedown touchstart", function(e){
 		if($(e.target).is("button")){
 			return;
 		}
-		drag_offset_x = e.clientX - $w[0].getBoundingClientRect().left;
-		drag_offset_y = e.clientY - $w[0].getBoundingClientRect().top;
-		$G.on("pointermove", drag);
+		var i = e;
+		if(typeof e.touches !== "undefined") {
+			i = e.touches[0];
+		}
+		drag_offset_x = i.clientX - $w[0].getBoundingClientRect().left;
+		drag_offset_y = i.clientY - $w[0].getBoundingClientRect().top;
+		$G.on("mousemove touchmove", drag);
 	});
-	$G.on("pointerup", function(){
-		$G.off("pointermove", drag);
+	$G.on("mouseup touchend", function(){
+		$G.off("mousemove touchmove", drag);
 	});
 	$w.$titlebar.on("dblclick", function(e){
 		if($component){

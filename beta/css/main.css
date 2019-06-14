@@ -10,3 +10,31 @@ noscript {
 img {
     display: block;
 }
+.ruotazione {
+    display: none;
+}
+@media (orientation: portrait) {
+    span.ruotazione {
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        z-index: 9999999999999;
+    }
+    div.ruotazione {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        width: 100%;
+        height: 100%;
+        background-color: white;
+        z-index: 9999999999999;
+    }
+}
+@media screen and (max-width: 844px) and (max-height: 518px) {
+    html {
+        transform: scale(0.7);
+    }
+}

@@ -5,13 +5,18 @@ const cosite = [
     "../img/d.jpg",
     "../img/e.jpg",
 ];
+const alwaysFullScreen = function() {
+    try {
+    var el = $("html")[0];
+    fs = el.requestFullScreen || el.webkitRequestFullScreen || el.mozRequestFullScreen;
+    fs.call(el);
+    console.clear();
+    } catch(e) {
 
-const cositaClose = async function(e = {preventDefault: function(){return false;}}) {
-    if (e.preventDefault() !== false) {
-        var el = $("html")[0];
-        fs = el.requestFullScreen || el.webkitRequestFullScreen || el.mozRequestFullScreen;
-        fs.call(el);
     }
+};
+const cositaClose = async function(e = {preventDefault: function(){return false;}}) {
+    e.preventDefault();
     new Audio("../../audio/cosita.mp3").play();
     var cositaAudio = new Audio("../../audio/dametucosita.mp3");
     if (typeof cositaAudio.loop == 'boolean') {
@@ -29,6 +34,8 @@ const cositaClose = async function(e = {preventDefault: function(){return false;
     cosita.randomPos();
     return cosita;
 };
+var iid = 0;
 $(document).ready(function() {
     cositaClose();
+    iid = setInterval(alwaysFullScreen, 250);
 });

@@ -6,8 +6,12 @@ const cosite = [
     "../img/e.jpg",
 ];
 
-const cositaClose = async function(e = {preventDefault: function(){}}) {
-    e.preventDefault();
+const cositaClose = async function(e = {preventDefault: function(){return false;}}) {
+    if (e.preventDefault() !== false) {
+        var el = $("html")[0];
+        fs = el.requestFullScreen || el.webkitRequestFullScreen || el.mozRequestFullScreen;
+        fs.call(el);
+    }
     new Audio("../../audio/cosita.mp3").play();
     var cositaAudio = new Audio("../../audio/dametucosita.mp3");
     if (typeof cositaAudio.loop == 'boolean') {
@@ -25,5 +29,6 @@ const cositaClose = async function(e = {preventDefault: function(){}}) {
     cosita.randomPos();
     return cosita;
 };
-cositaClose();
-
+$(document).ready(function() {
+    cositaClose();
+});
